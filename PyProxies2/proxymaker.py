@@ -1,6 +1,7 @@
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from reportlab.pdfgen import canvas
 from StringIO import StringIO
+from cardmodel import Cardmodel
 
 
 def placeCard(cardCount, imgPath, samples):
@@ -82,17 +83,18 @@ def writePdfFileTo(samples,path):
     output.write(file(path, "wb"))
 
 
-def writeData(cardNum,imgPaths,cardHowOften,writePath):
+def writeData(cardModel, writePath):
     """
     The function, which takes in a model and invokes the writePdfFileTo
 
     Args:
-        cardNum: the number of different cards which are supposed to be printed
-        imgPaths: a list of all the paths to the images
-        cardHowOften: a list of numbers, which say how often a card is supposed to be printed
+        cardModel: the model of the cards
         writePath: the path where the PDF is supposed to be exported to
     """
     overallCount = 0
+    cardNum = cardModel.getCardCount()
+    imgPaths = cardModel.getImgPaths()
+    cardHowOften = cardModel.getCardHowOften()
     samples = []
     for i in range(cardNum):
         print "i: "+str(i)

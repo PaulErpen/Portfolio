@@ -1,4 +1,4 @@
-from view2 import MtgProxyView
+from view import MtgProxyView
 import sys
 
 if __name__ == '__main__':
